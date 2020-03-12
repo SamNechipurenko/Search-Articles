@@ -51,7 +51,7 @@ public class NewsHandler implements Handler{
 
         System.out.println("\n");
         // print article information
-        for (int articleNum = 0; articleNum < 5; articleNum++) {
+        for (int articleNum = 4; articleNum >= 0; articleNum--) {
             System.out.println("title: " + articleList.get(articleNum).getTitle());
             System.out.println("author: " + articleList.get(articleNum).getAuthor());
             System.out.println("published at: " + articleList.get(articleNum).getPublishedAt());
