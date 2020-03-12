@@ -11,13 +11,12 @@ import java.util.List;
 @Component
 public class NewsHandler implements Handler{
 
-    private String countryLine = "us de";
+    private String countryLine = "us ua";
     // array of country symbols
     private String[] countries = countryLine.split(" ", -1);
     private List<Article> articles;
 
-    NewsClient newsClient = new NewsClient();
-
+    
     @Override
     public List<Article> getFirstFiveArticles() throws RuntimeException{
 
@@ -25,6 +24,7 @@ public class NewsHandler implements Handler{
         List<Article> allArticles = new ArrayList<>();
 
         try{
+            // getting all news for each country
             for (String country : countries){
                 News news = newsClient.getAllCountryNews(country);
 
