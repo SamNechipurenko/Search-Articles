@@ -33,7 +33,7 @@ class NewsHandlerTest {
     @Test
     void shouldReturnAllNewsObjectsFromMockedExternalAPI() {
 
-        System.out.println(new Date(1584080018121L));
+        //System.out.println(new Date(1584080018121L));
 
         List<Article> articles = new ArrayList<>();
         News news = new News();
