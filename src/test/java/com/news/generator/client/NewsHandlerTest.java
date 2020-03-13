@@ -50,6 +50,7 @@ class NewsHandlerTest {
         article.setPublishedAt(new Date(1584080118121L));
         articles.add(article);
 
+        news.setStatus("ok");
         news.setArticles(articles);
 
         Mockito.when(newsClient.getAllCountryNews("us")).thenReturn(news);
