@@ -16,13 +16,12 @@ import java.util.List;
 @Component
 public class NewsHandlerImpl implements NewsHandler {
 
-    Logger logger = LoggerFactory.getLogger(NewsHandlerImpl.class);
+    public  static Logger logger = LoggerFactory.getLogger(NewsHandlerImpl.class);
 
     private String countryLine = "us ua";
     // array of country symbols
     private String[] countries = countryLine.split(" ", -1);
     private List<Article> articles;
-
 
     @Override
     public List<Article> getTopArticles(int articleNumber) throws RuntimeException{

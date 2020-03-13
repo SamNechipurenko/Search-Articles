@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 public class NewsClientImpl implements NewsClient {
 
-    Logger logger = LoggerFactory.getLogger(NewsClientImpl.class);
+    public static Logger logger = LoggerFactory.getLogger(NewsClientImpl.class);
 
     public static final String ARTICLE_BY_COUNTRY_URL =
                             "http://newsapi.org/v2/top-headlines?country=";
