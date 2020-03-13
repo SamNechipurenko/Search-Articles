@@ -79,11 +79,4 @@ public class Article {
         this.content = content;
     }
 
-    @Override
-    public boolean equals(Object object){
-        Article article = (Article) object;
-        return article.getTitle() == getTitle()
-               && article.getAuthor() == getTitle()
-               && article.getPublishedAt() == getPublishedAt();
-    }
 }

@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class NewsHandlerTest {
 
-    @Autowired
+    @MockBean
     private NewsHandlerImpl newsHandler;
 
     @MockBean
