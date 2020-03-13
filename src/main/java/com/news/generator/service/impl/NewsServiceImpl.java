@@ -17,23 +17,25 @@ import java.util.List;
 public class NewsServiceImpl implements NewsService {
 
     public  static Logger logger = LoggerFactory.getLogger(NewsServiceImpl.class);
-
+    public static final String API_KEY= "fd868cb7d74b41d59cb8f6dc708c521c";
     private String countryLine = "us ua";
     // array of country symbols
     private String[] countries = countryLine.split(" ", -1);
 
     @Override
     public List<Article> getTopArticles(int articleNumber) throws RuntimeException{
+
         List<Article> articles;
         logger.debug("getTopArticles method started");
 
+        News news;
         NewsClient newsClient = new NewsClient();
         List<Article> allArticles = new ArrayList<>();
 
         try{
             // getting all news for each country
             for (String country : countries){
-                News news = newsClient.getAllCountryNews(country);
+                news = newsClient.getAllCountryNews(country, API_KEY);
 
                 // checking if country news are available
                 if(news.getStatus().equals("ok")){
@@ -53,7 +55,11 @@ public class NewsServiceImpl implements NewsService {
             logger.error("exception in News client API: " + ex);
             throw new RuntimeException("service is unavailable");
         }
-
+        // if parameter articleNumber less than available number of articles then return all articles
+        if (allArticles.size() < articleNumber) return allArticles;
+        // if parameter articleNumber less than 1 then return null
+        if (articleNumber < 1) return null;
+        // if parameter articleNumber more than available number of articles then return all articles
         return allArticles.subList(allArticles.size() - articleNumber , allArticles.size());
     }
 
@@ -68,7 +74,7 @@ public class NewsServiceImpl implements NewsService {
             System.out.println("title: " + articleList.get(articleNum).getTitle());
             System.out.println("author: " + articleList.get(articleNum).getAuthor());
             System.out.println("published at: " + articleList.get(articleNum).getPublishedAt());
-            System.out.println("link: " + articleList.get(articleNum).getUrl());
+            // System.out.println("link: " + articleList.get(articleNum).getUrl());
             System.out.println("\n");
         }
 

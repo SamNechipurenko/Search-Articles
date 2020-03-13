@@ -6,6 +6,8 @@ import com.news.generator.model.News;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -21,13 +23,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 class NewsServiceTest {
-
+    public static Logger logger = LoggerFactory.getLogger(NewsServiceTest.class);
     @MockBean
     private NewsServiceImpl newsHandler;
 
     @MockBean
     private NewsClient newsClient;
-
+    public static final String API_KEY = "fd868cb7d74b41d59cb8f6dc708c521c";
     // Testing method NewsClient.getAllCountryNews
     @Test
     void shouldReturnAllNewsObjectsFromMockedExternalAPI() {
@@ -52,8 +54,8 @@ class NewsServiceTest {
         news.setStatus("ok");
         news.setArticles(articles);
 
-        Mockito.when(newsClient.getAllCountryNews("us")).thenReturn(news);
-        assertEquals(news, newsClient.getAllCountryNews("us"));
+        Mockito.when(newsClient.getAllCountryNews("us", API_KEY)).thenReturn(news);
+        assertEquals(news, newsClient.getAllCountryNews("us", API_KEY));
 
     }
 
