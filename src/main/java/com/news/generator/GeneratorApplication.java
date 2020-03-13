@@ -1,6 +1,6 @@
 package com.news.generator;
 
-import com.news.generator.client.impl.NewsHandlerImpl;
+import com.news.generator.service.NewsHandlerImpl;
 import com.news.generator.model.Article;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,7 +1,7 @@
 package com.news.generator.client;
 
-import com.news.generator.client.impl.NewsClientImpl;
-import com.news.generator.client.impl.NewsHandlerImpl;
+import com.news.generator.service.impl.NewsClientImpl;
+import com.news.generator.service.NewsHandlerImpl;
 import com.news.generator.model.Article;
 import com.news.generator.model.News;
 import org.junit.jupiter.api.Test;
@@ -13,6 +13,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +52,58 @@ class NewsHandlerTest {
 
         Mockito.when(newsClient.getAllCountryNews("us")).thenReturn(news);
         assertEquals(news, newsClient.getAllCountryNews("us"));
+
+    }
+
+    @Test
+    void shouldReturnTopFive() {
+        List<Article> articles = new ArrayList<>();
+
+        Article article = new Article();
+        article.setTitle("Stock futures down after 11-year bull market run ended Thursday - CNN");
+        article.setAuthor("Clare Duffy, CNN Business");
+        article.setPublishedAt(new Date());
+        articles.add(article);
+
+        article = new Article();
+        article.setTitle("'The Bachelor': Hannah Ann Sluss" +
+                " and Peter Weber's Breakup Timeline Fills in Every Red Flag - Showbiz Cheat Sheet");
+        article.setAuthor("Nick Visser");
+        article.setPublishedAt(new Date());
+        articles.add(article);
+
+        article = new Article();
+        article.setTitle("Stock futures down after 11-year bull market run ended Thursday - CNN");
+        article.setAuthor("Kate Conger, David E. Sanger");
+        article.setPublishedAt(new Date());
+        articles.add(article);
+
+        article = new Article();
+        article.setTitle("Head Of U.S. Soccer Resigns After Equal Pay Backlash - HuffPost");
+        article.setAuthor("Connie Liou");
+        article.setPublishedAt(new Date());
+        articles.add(article);
+
+        article = new Article();
+        article.setTitle("Вольфсбург – Шахтар: Каштру назвав основну перевагу" +
+                " \"гірників\" та пояснив, чому довірив пенальті Коваленку — Футбол 24 - Футбол 24");
+        article.setAuthor("football24.ua");
+        article.setPublishedAt(new Date());
+        articles.add(article);
+
+        article = new Article();
+        article.setTitle("Head Of U.S. Soccer Resigns After Equal Pay Backlash - HuffPost");
+        article.setAuthor("Mark DeCambre");
+        article.setPublishedAt(new Date());
+        articles.add(article);
+        //news.setArticles(articles);
+        articles.sort(Comparator.comparing(Article::getPublishedAt));
+
+        List<Article> predictedArticleList = articles.subList(0,5);
+
+       // Mockito.when(newsHandler.getTopArticles(5)).thenReturn(articles.subList(0,5));
+       // assertEquals(predictedArticleList, newsHandler.getTopArticles(5));
+
 
     }
 

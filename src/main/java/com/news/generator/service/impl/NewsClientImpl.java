@@ -1,12 +1,11 @@
-package com.news.generator.client.impl;
+package com.news.generator.service.impl;
 
-import com.news.generator.client.NewsClient;
 import com.news.generator.model.News;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.RestTemplate;
 
-public class NewsClientImpl implements NewsClient {
+public class NewsClientImpl{
 
     public static Logger logger = LoggerFactory.getLogger(NewsClientImpl.class);
 
@@ -17,7 +16,6 @@ public class NewsClientImpl implements NewsClient {
     //RestTemplate thread safe is implemented internally, so we can use static
     public static RestTemplate restTemplate = new RestTemplate();
 
-    @Override
     public News getAllCountryNews(String country){
 
         logger.debug("method getAllCountryNews() for client API started");

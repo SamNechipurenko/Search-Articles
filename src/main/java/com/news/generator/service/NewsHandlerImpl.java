@@ -1,9 +1,10 @@
-package com.news.generator.client.impl;
+package com.news.generator.service;
 
 import com.news.generator.client.NewsHandler;
 import com.news.generator.model.Article;
 import com.news.generator.model.News;
 
+import com.news.generator.service.impl.NewsClientImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
