@@ -7,26 +7,24 @@ import com.news.generator.model.News;
 import com.news.generator.client.NewsClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+@Service
+public class NewsServiceImpl implements NewsHandler {
 
-@Component
-public class NewsHandlerImpl implements NewsHandler {
-
-    public  static Logger logger = LoggerFactory.getLogger(NewsHandlerImpl.class);
+    public  static Logger logger = LoggerFactory.getLogger(NewsServiceImpl.class);
 
     private String countryLine = "us ua";
     // array of country symbols
     private String[] countries = countryLine.split(" ", -1);
-    private List<Article> articles;
 
     @Override
     public List<Article> getTopArticles(int articleNumber) throws RuntimeException{
-
+        List<Article> articles;
         logger.debug("getTopArticles method started");
 
         NewsClient newsClient = new NewsClient();

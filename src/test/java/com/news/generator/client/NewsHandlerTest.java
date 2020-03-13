@@ -1,6 +1,6 @@
 package com.news.generator.client;
 
-import com.news.generator.service.impl.NewsHandlerImpl;
+import com.news.generator.service.impl.NewsServiceImpl;
 import com.news.generator.model.Article;
 import com.news.generator.model.News;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class NewsHandlerTest {
 
     @MockBean
-    private NewsHandlerImpl newsHandler;
+    private NewsServiceImpl newsHandler;
 
     @MockBean
     private NewsClient newsClient;

@@ -1,6 +1,6 @@
 package com.news.generator.controller;
 
-import com.news.generator.service.impl.NewsHandlerImpl;
+import com.news.generator.service.impl.NewsServiceImpl;
 import com.news.generator.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import java.util.List;
 public class NewsController {
 
     @Autowired
-    NewsHandlerImpl newsHandler;
+    NewsServiceImpl newsHandler;
 
     @GetMapping("/news")
     public List<Article> showAllNews(){
