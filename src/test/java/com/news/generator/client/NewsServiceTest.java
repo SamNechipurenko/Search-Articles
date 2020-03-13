@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class NewsHandlerTest {
+class NewsServiceTest {
 
     @MockBean
     private NewsServiceImpl newsHandler;

@@ -1,6 +1,6 @@
 package com.news.generator.service.impl;
 
-import com.news.generator.service.NewsHandler;
+import com.news.generator.service.NewsService;
 import com.news.generator.model.Article;
 import com.news.generator.model.News;
 
@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @Service
-public class NewsServiceImpl implements NewsHandler {
+public class NewsServiceImpl implements NewsService {
 
     public  static Logger logger = LoggerFactory.getLogger(NewsServiceImpl.class);
 
