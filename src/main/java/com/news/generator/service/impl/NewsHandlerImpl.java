@@ -1,10 +1,10 @@
-package com.news.generator.service;
+package com.news.generator.service.impl;
 
-import com.news.generator.client.NewsHandler;
+import com.news.generator.service.NewsHandler;
 import com.news.generator.model.Article;
 import com.news.generator.model.News;
 
-import com.news.generator.service.impl.NewsClientImpl;
+import com.news.generator.client.NewsClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -29,7 +29,7 @@ public class NewsHandlerImpl implements NewsHandler {
 
         logger.debug("getTopArticles method started");
 
-        NewsClientImpl newsClient = new NewsClientImpl();
+        NewsClient newsClient = new NewsClient();
         List<Article> allArticles = new ArrayList<>();
 
         try{

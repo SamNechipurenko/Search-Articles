@@ -1,6 +1,6 @@
 package com.news.generator.controller;
 
-import com.news.generator.service.NewsHandlerImpl;
+import com.news.generator.service.impl.NewsHandlerImpl;
 import com.news.generator.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

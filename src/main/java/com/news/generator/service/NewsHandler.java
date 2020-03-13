@@ -1,4 +1,4 @@
-package com.news.generator.client;
+package com.news.generator.service;
 
 import com.news.generator.model.Article;
 
