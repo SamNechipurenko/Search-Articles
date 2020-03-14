@@ -10,11 +10,13 @@ import java.util.List;
 @SpringBootApplication
 public class GeneratorApplication {
 
-    static NewsServiceImpl newsHandler = new NewsServiceImpl();
+    static NewsServiceImpl newsService = new NewsServiceImpl();
 
     public static void main(String[] args) {
         SpringApplication.run(GeneratorApplication.class, args);
-        List<Article> articleList = newsHandler.getTopArticles(5);
-        newsHandler.printTop(articleList, 5);
+        // get top 5 articles
+        List<Article> articleList = newsService.getTopArticles(5);
+        // print top 5 articles
+        newsService.printTop(articleList);
     }
 }

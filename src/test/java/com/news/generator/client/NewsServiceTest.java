@@ -1,5 +1,6 @@
 package com.news.generator.client;
 
+import com.news.generator.service.NewsService;
 import com.news.generator.service.impl.NewsServiceImpl;
 import com.news.generator.model.Article;
 import com.news.generator.model.News;
@@ -29,13 +30,13 @@ class NewsServiceTest {
 
     @MockBean
     private NewsClient newsClient;
-    public static final String API_KEY = "fd868cb7d74b41d59cb8f6dc708c521c";
-    // Testing method NewsClient.getAllCountryNews
+
+    // Testing method NewsClient.getAllCountryNews()
     @Test
     void shouldReturnAllNewsObjectsFromMockedExternalAPI() {
 
-        //System.out.println(new Date(1584080018121L));
-
+        logger.info("start testing NewsClient.getAllCountryNews()");
+        logger.info("start adding articles");
         List<Article> articles = new ArrayList<>();
         News news = new News();
 
@@ -53,16 +54,19 @@ class NewsServiceTest {
 
         news.setStatus("ok");
         news.setArticles(articles);
+        logger.info("articles are added");
 
-        Mockito.when(newsClient.getAllCountryNews("us", API_KEY)).thenReturn(news);
-        assertEquals(news, newsClient.getAllCountryNews("us", API_KEY));
+        Mockito.when(newsClient.getAllCountryNews("us", NewsService.API_KEY)).thenReturn(news);
+        assertEquals(news, newsClient.getAllCountryNews("us", NewsService.API_KEY));
 
     }
 
-    // Testing method NewsHandlerImpl.getTopArticles
+    // Testing method NewsHandlerImpl.getTopArticles()
     @Test
     void shouldReturnTopFive() {
+        logger.info("start testing NewsHandlerImpl.getTopArticles()");
         List<Article> articles = new ArrayList<>();
+        logger.info("adding six articles");
 
         Article article = new Article();
         article.setTitle("Stock futures down after 11-year bull market run ended Thursday - CNN");
@@ -101,15 +105,18 @@ class NewsServiceTest {
         article.setAuthor("Mark DeCambre");
         article.setPublishedAt(new Date(1584080218121L));
         articles.add(article);
+
+        logger.info("added six articles");
+
         //news.setArticles(articles);
         articles.sort(Comparator.comparing(Article::getPublishedAt));
+        logger.info("articles are sorted by date");
 
         List<Article> predictedArticleList = articles.subList(0,5);
+        logger.info("getting article first 5 sorted by date articles");
 
         Mockito.when(newsHandler.getTopArticles(5)).thenReturn(articles.subList(0,5));
         assertEquals(predictedArticleList, newsHandler.getTopArticles(5));
-
-
     }
 
 }

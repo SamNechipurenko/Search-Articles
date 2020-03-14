@@ -17,8 +17,11 @@ import java.util.List;
 public class NewsServiceImpl implements NewsService {
 
     public  static Logger logger = LoggerFactory.getLogger(NewsServiceImpl.class);
-    public static final String API_KEY= "fd868cb7d74b41d59cb8f6dc708c521c";
-    private String countryLine = "us ua";
+
+    // all country symbols
+    private String countryLine = "ae ar at au be bg br ca ch cn co cu cz de eg 7fr gb " +
+                                "gr hk hu id ie il in it jp kr lt lv ma mx my ng nl no " +
+                                "nz ph pl pt ro rs ru sa se sg si sk th tr tw ua us ve za";
     // array of country symbols
     private String[] countries = countryLine.split(" ", -1);
 
@@ -35,7 +38,7 @@ public class NewsServiceImpl implements NewsService {
         try{
             // getting all news for each country
             for (String country : countries){
-                news = newsClient.getAllCountryNews(country, API_KEY);
+                news = newsClient.getAllCountryNews(country, NewsService.API_KEY);
 
                 // checking if country news are available
                 if(news.getStatus().equals("ok")){
@@ -64,19 +67,22 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public void printTop(List<Article> articleList, int articleNumber){
+    public void printTop(List<Article> articleList){
+        if(!articleList.isEmpty()) {
+            int articleNumber = articleList.size();
 
-        logger.debug("start print top: " + articleNumber + " information");
+            logger.debug("start print top: " + articleNumber + " information");
 
-        System.out.println("\n");
-        // print article information
-        for (int articleNum = articleNumber-1 ; articleNum >= 0; articleNum--) {
-            System.out.println("title: " + articleList.get(articleNum).getTitle());
-            System.out.println("author: " + articleList.get(articleNum).getAuthor());
-            System.out.println("published at: " + articleList.get(articleNum).getPublishedAt());
-            // System.out.println("link: " + articleList.get(articleNum).getUrl());
             System.out.println("\n");
+            // print article information
+            for (int articleNum = articleNumber - 1; articleNum >= 0; articleNum--) {
+                System.out.println("title: " + articleList.get(articleNum).getTitle());
+                System.out.println("author: " + articleList.get(articleNum).getAuthor());
+                System.out.println("published at: " + articleList.get(articleNum).getPublishedAt());
+                // System.out.println("link: " + articleList.get(articleNum).getUrl());
+                System.out.println("\n");
+            }
         }
-
+        else System.out.println("No articles found");
     }
 }
